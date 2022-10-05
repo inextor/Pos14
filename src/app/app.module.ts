@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,7 @@ import { SelectDeliveryUserComponent } from './components/select-delivery-user/s
 import { SelectItemOptionComponent } from './components/select-item-option/select-item-option.component';
 import { ToastErrorComponent } from './components/toast-error/toast-error.component';
 import { BaseComponent } from './pages/base/base.component';
+import { RestService } from './services/rest.service';
 
 @NgModule({
   declarations: [
