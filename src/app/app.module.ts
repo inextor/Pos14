@@ -31,6 +31,7 @@ import { SearchItemsComponent } from './components/search-items/search-items.com
 import { SelectDeliveryUserComponent } from './components/select-delivery-user/select-delivery-user.component';
 import { SelectItemOptionComponent } from './components/select-item-option/select-item-option.component';
 import { ToastErrorComponent } from './components/toast-error/toast-error.component';
+import { BaseComponent } from './pages/base/base.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ToastErrorComponent } from './components/toast-error/toast-error.compon
     SearchItemsComponent,
     SelectDeliveryUserComponent,
     SelectItemOptionComponent,
-    ToastErrorComponent
+    ToastErrorComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,
