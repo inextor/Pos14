@@ -32,51 +32,50 @@ import { SearchItemsComponent } from './components/search-items/search-items.com
 import { SelectDeliveryUserComponent } from './components/select-delivery-user/select-delivery-user.component';
 import { SelectItemOptionComponent } from './components/select-item-option/select-item-option.component';
 import { ToastErrorComponent } from './components/toast-error/toast-error.component';
-import { BaseComponent } from './pages/base/base.component';
-import { RestService } from './services/rest.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AddNewAddressComponent,
-    AddNewClientComponent,
-    AddNewItemEasyComponent,
-    AddPosBillComponent,
-    AttachmentUploaderComponent,
-    FullTextComponent,
-    HeaderComponent,
-    ImageUploaderComponent,
-    ItemSelectorComponent,
-    ListCashCloseComponent,
-    LoadingComponent,
-    MakeOrderReturnComponent,
-    MakePaymentComponent,
-    MenuComponent,
-    ModalComponent,
-    PaginationComponent,
-    PayOrderComponent,
-    QrCodeScannerComponent,
-    SaveBankMovementEmbededComponent,
-    SaveCashCloseComponent,
-    SaveFundComponent,
-    SearchCategoryComponent,
-    SearchItemsComponent,
-    SelectDeliveryUserComponent,
-    SelectItemOptionComponent,
-    ToastErrorComponent,
-    BaseComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		AddNewAddressComponent,
+		AddNewClientComponent,
+		AddNewItemEasyComponent,
+		AddPosBillComponent,
+		AttachmentUploaderComponent,
+		FullTextComponent,
+		HeaderComponent,
+		ImageUploaderComponent,
+		ItemSelectorComponent,
+		ListCashCloseComponent,
+		LoadingComponent,
+		MakeOrderReturnComponent,
+		MakePaymentComponent,
+		MenuComponent,
+		ModalComponent,
+		PaginationComponent,
+		PayOrderComponent,
+		QrCodeScannerComponent,
+		SaveBankMovementEmbededComponent,
+		SaveCashCloseComponent,
+		SaveFundComponent,
+		SearchCategoryComponent,
+		SearchItemsComponent,
+		SelectDeliveryUserComponent,
+		SelectItemOptionComponent,
+		ToastErrorComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		SharedModule.forRoot(),
+		ServiceWorkerModule.register('ngsw-worker.js', {
+			enabled: environment.production,
+			// Register the ServiceWorker as soon as the application is stable
+			// or after 30 seconds (whichever comes first).
+			registrationStrategy: 'registerWhenStable:30000'
+		})
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

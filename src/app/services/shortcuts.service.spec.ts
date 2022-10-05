@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShorcutsService } from './shorcuts.service';
+import { ShortcutsService } from './shortcuts.service';
 
-describe('ShorcutsService', () => {
-  let service: ShorcutsService;
+describe('ShortcutsService', () => {
+  let service: ShortcutsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ShorcutsService);
+    service = TestBed.inject(ShortcutsService);
   });
 
   it('should be created', () => {

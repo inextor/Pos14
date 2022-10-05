@@ -7,9 +7,9 @@ import { SearchObject } from 'src/app/services/Rest';
 import { ErrorMessage, Utils } from 'src/app/classes/Utils';
 import { SubSink } from 'subsink';
 import { ConfirmationService } from 'src/app/services/confirmation.service';
-import {ShortcutsService} from 'src/app/services/shortcuts.service';
 import { combineLatest,Observable } from 'rxjs';
 import { startWith } from 'rxjs/operators';
+import { ShortcutsService } from 'src/app/services/shortcuts.service';
 
 @Component({
 	selector: 'app-base',
