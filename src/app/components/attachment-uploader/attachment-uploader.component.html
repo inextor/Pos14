@@ -1,1 +1,16 @@
-<p>attachment-uploader works!</p>
+<div>
+	<label class="py-3">
+		<div>
+
+			<div [ngClass]="containerClasses"> <!-- ngStyle={'width':width,'height':height,'background-image': 'url('+rest.urlBase+'/image.php?id='+image+')'} -->
+				<!-- <span class="alling-center">  -->
+					<!-- <i class="fas fa-camera"></i> -->
+					<img [ngClass]="imageClasses" [src]="rest.getImagePath(image,null)">
+				<!-- </span> -->
+			</div>
+		</div>
+		<input style="display:none" type="file" (change)="uploadAttachment($event)">
+		<span *ngIf="displayUploadedAttachmentName"> {{filename || default_message}} </span>
+	</label>
+</div>
+
