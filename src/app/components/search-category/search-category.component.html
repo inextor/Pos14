@@ -1,1 +1,14 @@
-<p>search-category works!</p>
+<div class="dropdown show">
+	<div class="form-group">
+		<label for="category_search_name">Categoría</label>
+		<select name="search_category_id" [ngModel]="selected_category_id" (ngModelChange)="categoryIdChange($event)" *ngIf="show_select" class="form-control">
+			<option *ngFor="let category of category_list" [ngValue]="category.id">{{category.name | titlecase}}</option>
+		</select>
+	</div>
+	<input type="text" [ngModel]="search_str" (ngModelChange)="onSearch($event)" placeholder="Buscar categoria" *ngIf="!show_select" class="form-control">
+	<ul class="dropdown-menu show" [ngClass]="{'position-relative':!overflow_content}" aria-expanded="true" aria-labelledby="dropdownMenuLink"  *ngIf="!show_select && search_str.length>0 && category_list.length">
+		<li *ngFor="let c of category_list;let i=index" (click)="categoryIdChange(c.id)" class="pointer" [ngClass]="{pointer:true,'list-group-item':true,'active': selected_index == i }">
+			{{c.name | titlecase}}
+		</li>
+	</ul>
+</div>

@@ -131,7 +131,7 @@ export interface ItemOptionInfo
 export interface ItemInfo
 {
 	item:Item;
-	category?:Category;
+	category:Category | null;
 	//product?:Product; //Category
 	//item_options?:ItemOptionInfo[];
 	//attributes?:Item_Attribute[];

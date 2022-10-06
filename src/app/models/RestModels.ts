@@ -624,6 +624,7 @@ export interface Price_Type{
 	created:Date | null;
 	id:number;
 	name:string;
+	tax_model: 'TAX_INCLUDED' | 'PLUS_TAX' | 'ALL';
 	sort_priority:number;
 	updated:Date | null;
 }

@@ -1,1 +1,52 @@
-<p>add-new-item-easy works!</p>
+<h1 class="m-3">Agregar Artículo</h1>
+<div class="p-3">
+	<form name="addNewItemEasy" (ngSubmit)="save($event)" ngNativeValidate>
+		<div class="row">
+			<div class="col-3 col-lg-2">
+				<app-image-uploader [(image)]="item_info.item.image_id"></app-image-uploader>
+			</div>
+			<div class="col-9 col-lg-10">
+				<label for="name">Nombre</label>
+				<input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="item_info.item.name" name="name" required>
+			</div>
+
+			<div class="col-12 col-lg-6">
+				<app-search-category (categoryId)="item_info.item.category_id = $event" [overflow_content]="false"></app-search-category>
+			</div>
+
+			<div class="col-12 col-lg-6">
+				<label for="name">Código</label>
+				<input type="text" class="form-control" placeholder="Código" [(ngModel)]="item_info.item.code" name="code" required>
+			</div>
+		</div>
+		<table class="table my-3" border=1>
+			<tbody>
+				<ng-container  *ngFor="let pl of price_list_list">
+					<ng-container  *ngFor="let pt of price_type_list;let i=index">
+						<tr>
+							<th *ngIf="i==0" [rowSpan]="price_type_list.length" class="border">{{pl.name}}</th>
+							<td>{{pt.name | titlecase}}</td>
+							<td>
+								<input type="number" class="form-control" [name]="'pprice_'+pl.id+'-'+pt.id" [(ngModel)]="price_dict[pl.id+'-'+pt.id].price" min="0" step="any" required>
+							</td>
+							<td >
+								<select *ngIf="pt.tax_model=='ALL'" [name]="'tax_'+pl.id+'-'+pt.id" [(ngModel)]="price_dict[ pl.id+'-'+pt.id ].tax_included" class="form-control" required>
+									<option value="YES">IVA Incluido</option>
+									<option value="NO">Más IVA</option>
+								</select>
+								<span *ngIf="pt.tax_model != 'ALL'">{{pt.tax_model=='PLUS_TAX'?'Mas IVA':'IVA Incluido'}}</span>
+							</td>
+							<td *ngIf="rest.local_preferences.currency_price_preference == 'MULTIPLE_CURRENCY'">
+								<input type="text" class="form-control" min="0" step="any" list="tipo_precio" minlength="3" maxlength="3" [name]="pl.id+'-'+pt.id" [(ngModel)]="price_dict[ pl.id+'-'+pt.id ].currency_id" placeholder="moneda" required>
+							</td>
+						</tr>
+					</ng-container>
+				</ng-container>
+			</tbody>
+		</table>
+
+		<div class="text-end">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+	</form>
+</div>
