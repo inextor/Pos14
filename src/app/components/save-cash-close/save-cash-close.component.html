@@ -1,1 +1,37 @@
-<p>save-cash-close works!</p>
+<div class="container-fluid" style="min-width:600px;">
+	<div class="row py-3 border-bottom">
+		<div class="col-12">
+			<h4>Corte de caja personal</h4>
+		</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-6">
+			<div>Inicio sesión actual:</div>
+			<div>{{this.rest.session_start | date:'MMM d, y, h:mm a'}}</div>
+		</div>
+		<div class="col-6"></div>
+	</div>
+	<div class="text-center">
+	</div>
+	<h5>Registro de cortes pasados</h5>
+	<div class="row mt-3">
+		<div class="col-2">Folio</div>
+		<div class="col-5">Inicio</div>
+		<div class="col-5">Fin</div>
+	</div>
+	<ng-container  *ngFor="let cash_close of cash_close_list">
+		<div class="row pointer py-1" [routerLink]="['/print-corte',rest.local_preferences.default_cash_close_receipt,cash_close.id]">
+			<div class="col-2">{{cash_close.id }}</div>
+			<div class="col-5">{{cash_close.start | date: 'MMM d, y, h:mm a'}}</div>
+			<div class="col-5">{{cash_close.end | date: 'MMM d, y, h:mm a'}}</div>
+		</div>
+	</ng-container>
+	<div class="row p-3 mt-3 text-end border-top">
+		<div class="col-6">
+			<button type="button" class="w-100 btn btn-danger">Cancelar</button>
+		</div>
+		<div class="col-6">
+			<button type="button" class="w-100 btn btn-success" (click)="crearCorteNuevo($event)">Crear nuevo corte</button>
+		</div>
+	</div>
+</div>

@@ -1,1 +1,39 @@
-<p>select-item-option works!</p>
+<div *ngIf="item_info" class="main-container p-3">
+	<h2>{{item_info.options[ option_index ].item_option.name | titlecase}} - {{item_info.options[ option_index ].item_option.max_extra_qty }}</h2>
+	<div class="list-container">
+		<cdk-virtual-scroll-viewport #option_view_port [itemSize]="item_info.options[option_index].values.length" class="w-100 h-100">
+			<div *ngFor="let iovi of item_info.options[option_index].values;let i=index"
+	   			class="pointer row item-option mx-0" [class]="{focus_item:i==row_index}"
+				(click)="optionClicked(iovi)">
+				<div class="col-8 border h-100" [ngClass]="{'border-top-0':i>0}">
+					<img src="/assets/2px_transparent.png" width="1" height="40">{{iovi?.category?.name | titlecase}} {{iovi.item.name | titlecase}}
+					<span class="d-md-none">{{iovi.item_option_value.extra_price || null | currency :'$'}}</span>
+				</div>
+				<div class="col-2 col-md-1 border h-100 border-start-0 text-end" [ngClass]="{'border-top-0':i>0}">
+					<img src="/assets/2px_transparent.png" width="1" height="40">{{option_dictionary[iovi.item_option_value.id ] || null | number}}
+				</div>
+				<div class="d-none d-md-block col-md-2 border h-100 border-start-0 text-end" [ngClass]="{'border-top-0':i>0}">
+					<img src="/assets/2px_transparent.png" width="1" height="40">{{iovi.item_option_value.extra_price || null | currency:'$'}}
+				</div>
+				<div class="col-2 col-md-1 border h-100 border-start-0 text-end pointer" [ngClass]="{'border-top-0':i>0}">
+					<img src="/assets/2px_transparent.png" width="1" height="40">{{option_dictionary[ iovi.item_option_value.id ] ? '✓': '' }}
+				</div>
+			</div>
+		</cdk-virtual-scroll-viewport>
+	</div>
+</div>
+<div class="row p-3" *ngIf="item_info">
+	<div class="col-4" *ngIf="option_index==0"></div>
+	<div class="col-4">
+		<button type="button" class="btn btn-danger w-100" (click)="cancelar()">Cancelar</button>
+	</div>
+	<div class="col-4" *ngIf="option_index>0">
+		<button type="button" class="btn btn-danger w-100" (click)="cancelar()">Previo</button>
+	</div>
+	<div class="col-4" *ngIf="option_index < item_info.options.length-1">
+		<button type="button" class="btn btn-success w-100" (click)="next()">Siguiente</button>
+	</div>
+	<div class="col-4" *ngIf="option_index == item_info.options.length-1">
+		<button type="button" class="btn btn-success w-100" (click)="done()">Aceptar</button>
+	</div>
+</div>

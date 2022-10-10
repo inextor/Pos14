@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {forkJoin, of} from 'rxjs';
 import {catchError, mergeMap} from 'rxjs/operators';
 import { GetEmpty } from 'src/app/classes/GetEmpty';
@@ -11,7 +11,7 @@ import {BaseComponent} from 'src/app/pages/base/base.component';
 	templateUrl: './add-new-item-easy.component.html',
 	styleUrls: ['./add-new-item-easy.component.css']
 })
-export class AddNewItemEasyComponent extends BaseComponent
+export class AddNewItemEasyComponent extends BaseComponent implements OnInit
 {
 	@Output() newItem = new EventEmitter<ItemInfo | null>();
 	@Input() type:string = 'PRODUCT';
@@ -24,7 +24,7 @@ export class AddNewItemEasyComponent extends BaseComponent
 	price_type_list:Price_Type[] = [];
 	price_dict:Record<string, Price> = {};
 
-	override ngOnInit(): void
+	ngOnInit(): void
 	{
 		this.subs.sink = forkJoin
 		({

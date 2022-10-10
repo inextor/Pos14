@@ -1,4 +1,4 @@
-import { Component, Output,EventEmitter, Input } from '@angular/core';
+import { Component, Output,EventEmitter, Input, OnInit } from '@angular/core';
 import {Subject} from 'rxjs';
 import {debounceTime, mergeMap} from 'rxjs/operators';
 import { GetEmpty } from 'src/app/classes/GetEmpty';
@@ -11,7 +11,7 @@ import {BaseComponent} from 'src/app/pages/base/base.component';
 	templateUrl: './search-category.component.html',
 	styleUrls: ['./search-category.component.css']
 })
-export class SearchCategoryComponent extends BaseComponent
+export class SearchCategoryComponent extends BaseComponent implements OnInit
 {
 	show_select:boolean = true;
 	selected_category:Category = GetEmpty.category();
@@ -21,32 +21,26 @@ export class SearchCategoryComponent extends BaseComponent
 	search_subject = new Subject<string>();
 	category_list: Category[] = [];
 	search_str:string = '';
-
 	@Input() overflow_content:boolean = true;
 	@Output() category = new EventEmitter<Category>();
 	@Output() categoryId = new EventEmitter<number | null>();
-
-	override ngOnInit(): void
+	ngOnInit(): void 
 	{
-		this.subs.sink = this.rest.category.search
-		({
-			limit: 100,
-			sort_order: ['name_ASC']
-		})
-		.subscribe((response)=>
-		{
-			this.show_select = response.total < 15;
+		this.subs.sink = this.rest.category
+		.search ({ limit: 100, sort_order: ['name_ASC'] })
+		.subscribe((response)=> 
+		{ 
+			this.show_select = response.total < 15; 
 			this.selected_index = -1;
 			this.category_list = response.data;
-		})
-
+		}) 
 		this.subs.sink = this.search_subject.pipe
-		(
+		( 
 			debounceTime(250),
-			mergeMap((search:string) =>
-			{
+			mergeMap((search:string) => 
+			{ 
 				return this.rest.category.search
-				({
+				({ 
 					limit: 10,
 					sort_order: ['name_ASC'],
 					start:{ name:search }
@@ -103,7 +97,7 @@ export class SearchCategoryComponent extends BaseComponent
 	categoryIdChange(category_id:number | null )
 	{
 		this.categoryId.emit( category_id );
-		let to_emit:Category| null = null;
+		let to_emit:Category| undefined = undefined;
 
 
 		if( category_id != null )

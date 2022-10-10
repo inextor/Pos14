@@ -1,0 +1,52 @@
+.item-option
+{
+	height: 40px;
+}
+
+.focus_item
+{
+	background-color: #9dff9d;
+
+	background-color: var(--item-selected-background-color );
+	color: var( --item-selected-text-color );
+}
+
+.list-container
+{
+	height:400px;
+}
+
+
+.main-container
+{
+	width: 300px;
+}
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+	.main-container
+	{
+		width: 500px;
+	}
+
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+	.main-container
+	{
+		width: 700px;
+	}
+}
+
+/* // Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+/* // X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+/*
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... }
+*/

@@ -30,6 +30,8 @@ import { SearchItemsComponent } from '../components/search-items/search-items.co
 import { SelectDeliveryUserComponent } from '../components/select-delivery-user/select-delivery-user.component';
 import { SelectItemOptionComponent } from '../components/select-item-option/select-item-option.component';
 import { ToastErrorComponent } from '../components/toast-error/toast-error.component';
+import { ScrollingModule} from '@angular/cdk/scrolling';
+import { AppRoutingModule } from '../app-routing.module';
 		//AddNewAddressComponent,
 		//AddNewClientComponent,
 		//AddNewItemEasyComponent,
@@ -94,6 +96,8 @@ import { ToastErrorComponent } from '../components/toast-error/toast-error.compo
 	imports: [ 
 		FormsModule, 
 		CommonModule, 
+		ScrollingModule,
+		AppRoutingModule,
 	],
 	exports:[ 
 		FormsModule, 
@@ -122,7 +126,7 @@ import { ToastErrorComponent } from '../components/toast-error/toast-error.compo
 		SelectDeliveryUserComponent,
 		SelectItemOptionComponent,
 		ToastErrorComponent,
-
+		AppRoutingModule,
 	],
 })
 export class SharedModule {

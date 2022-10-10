@@ -1,1 +1,11 @@
-<p>pagination works!</p>
+<div class="d-flex bd-hightlight" *ngIf="total_pages>1">
+	<div>
+		<button [disabled]="current_page == 0" type="button" class="btn  mr-1"  (click)="gotoPage(0)">&lt;&lt;</button>
+		<button [disabled]="current_page == 0" type="button" class="btn "  (click)="gotoPage(current_page-1)">&lt;</button>
+	</div>
+	<div class="flex-grow-1 text-center indicador">Página {{current_page+1}} de {{total_pages}}</div>
+	<div>
+		<button [disabled]="current_page >= total_pages-1 "type="button" class="btn " (click)="gotoPage(current_page+1)">&gt;</button>
+		<button [disabled]="current_page >= total_pages-1 "type="button" class="btn  ml-1" (click)="gotoPage(total_pages-1)">&gt;&gt;</button>
+	</div>
+</div>

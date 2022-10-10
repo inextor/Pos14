@@ -124,7 +124,7 @@ export interface ItemOptionValueInfo
 
 export interface ItemOptionInfo
 {
-	item_option?:Partial<Item_Option>;
+	item_option:Item_Option;
 	values:ItemOptionValueInfo[];
 }
 

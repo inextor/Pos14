@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { RestService } from '../../services/rest.service';
 import { Router,ActivatedRoute, ParamMap} from "@angular/router" //,Params
 import { Location } from	'@angular/common';
@@ -17,7 +17,7 @@ import { ShortcutsService } from 'src/app/services/shortcuts.service';
 	styleUrls: ['./base.component.css']
 })
 
-export class BaseComponent implements OnInit, OnDestroy {
+export class BaseComponent implements OnDestroy {
 
 	public is_loading:boolean	= false;
 	//public preferences:Preferences = {};
@@ -40,8 +40,6 @@ export class BaseComponent implements OnInit, OnDestroy {
 		if( window.document.body.clientWidth < 1200 )
 			this.rest.hideMenu();
 	}
-
-	ngOnInit() { }
 
 	ngOnDestroy()
 	{

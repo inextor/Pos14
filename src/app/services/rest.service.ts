@@ -45,7 +45,7 @@ import {
 } from '../models/RestModels';
 import { StoreDictionary } from '../classes/Finger/SchemeBuilder';
 import { Options } from '../classes/Finger/OptionsUtils';
-import { OfflineUtils } from '../classes/OfflineUtils';
+import { ItemCategorySearch, OfflineUtils } from '../classes/OfflineUtils';
 import { BuildInfo } from '../models/BuildInfo';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
@@ -1544,7 +1544,7 @@ export class RestService
 		return from( OfflineUtils.getItemInfoByCategory(this.offline_db, category_id) );
 	}
 
-	getOfflineCategoriesAndItems(category_id:number):Promise<Record<string,Category[]|ItemInfo[]>>
+	getOfflineCategoriesAndItems(category_id:number):Promise<ItemCategorySearch>
 	{
 		return OfflineUtils.getCategoriesAndItems(this.offline_db, category_id );
 	}

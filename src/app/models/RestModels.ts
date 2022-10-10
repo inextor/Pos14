@@ -4,7 +4,7 @@ export interface Address{
 	address:string;
 	city:string | null;
 	country:string | null;
-	created:Date | null;
+	created:Date;
 	email:string | null;
 	id:number;
 	lat:number | null;
@@ -17,13 +17,13 @@ export interface Address{
 	status:'ACTIVE'|'DELETED';
 	suburb:string | null;
 	type:'BILLING'|'SHIPPING'|'BILLING_AND_SHIPPING';
-	updated:Date | null;
+	updated:Date;
 	user_id:number;
 	zipcode:string | null;
 }
 export interface Attachment{
 	content_type:string;
-	created:Date | null;
+	created:Date;
 	file_type_id:number | null;
 	filename:string | null;
 	height:number | null;
@@ -31,7 +31,7 @@ export interface Attachment{
 	original_filename:string;
 	size:number | null;
 	status:'ACTIVE'|'DELETED';
-	updated:Date | null;
+	updated:Date;
 	uploader_user_id:number | null;
 	width:number | null;
 }
@@ -39,13 +39,13 @@ export interface Bank_Account{
 	account:string;
 	alias:string;
 	bank:string;
-	created:Date | null;
+	created:Date;
 	currency:string;
 	email:string | null;
 	id:number;
 	is_a_payment_method:'NO'|'YES';
 	name:string;
-	updated:Date | null;
+	updated:Date;
 	user_id:number | null;
 }
 export interface Bank_Movement{
@@ -53,7 +53,7 @@ export interface Bank_Movement{
 	bank_account_id:number | null;
 	card_ending:string | null;
 	client_user_id:number | null;
-	created:Date | null;
+	created:Date;
 	currency_id:string;
 	id:number;
 	invoice_attachment_id:number | null;
@@ -68,23 +68,23 @@ export interface Bank_Movement{
 	total:number;
 	transaction_type:'CASH'|'CREDIT_CARD'|'DEBIT_CARD'|'CHECK'|'COUPON'|'TRANSFER'|'DISCOUNT'|'RETURN_DISCOUNT'|'PAYPAL';
 	type:'expense'|'income';
-	updated:Date | null;
+	updated:Date;
 }
 export interface Bank_Movement_Bill{
 	amount:number;
 	bank_movement_id:number;
 	bill_id:number;
-	created:Date | null;
+	created:Date;
 	currency_amount:number;
 	currency_id:string;
 	exchange_rate:number;
 	id:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Bank_Movement_Order{
 	amount:number;
 	bank_movement_id:number;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	currency_amount:number;
 	currency_id:string;
@@ -92,7 +92,7 @@ export interface Bank_Movement_Order{
 	id:number;
 	order_id:number;
 	status:'ACTIVE'|'DELETED';
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Bill{
@@ -100,7 +100,7 @@ export interface Bill{
 	amount_paid:number;
 	aproved_by_user_id:number | null;
 	bank_account_id:number | null;
-	created:Date | null;
+	created:Date;
 	currency_id:string;
 	due_date:string | null;
 	folio:string | null;
@@ -118,22 +118,23 @@ export interface Bill{
 	purchase_id:number | null;
 	receipt_attachment_id:number | null;
 	status:'DELETED'|'ACTIVE';
+	store_id:number | null;
 	total:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Billing_Data{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	password:string;
 	precision:number;
 	rfc:string;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 	usuario:string;
 }
 export interface Box{
-	created:Date | null;
+	created:Date;
 	id:number;
 	production_item_id:number | null;
 	serial_number_range_end:number | null;
@@ -141,7 +142,7 @@ export interface Box{
 	status:'ACTIVE'|'DELETED';
 	store_id:number | null;
 	type_item_id:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Box_Content{
 	box_id:number;
@@ -153,45 +154,46 @@ export interface Box_Content{
 	serial_number_range_start:number | null;
 }
 export interface Brand{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	description:string | null;
 	id:number;
 	image_id:number | null;
 	name:string;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Cart_Item{
-	created:Date | null;
+	created:Date;
 	id:number;
 	item_id:number;
 	qty:number;
 	session_id:string | null;
 	type:'IN_CART'|'BUY_LATER';
-	updated:Date | null;
+	updated:Date;
 	user_id:number | null;
 }
 export interface Cash_Close{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number;
 	end:string;
 	id:number;
 	since:Date | null;
 	start:string;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Category{
 	code:string | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	default_clave_prod_serv:string | null;
 	display_status:'NORMAL'|'HIDDEN';
+	on_sale: 'YES'|'NO';
 	id:number;
 	image_id:number | null;
 	name:string;
 	type:string | null;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Category_Store{
@@ -223,13 +225,15 @@ export interface Commanda{
 	commanda_type_id:number;
 	id:number;
 	name:string;
+	order_display_preferences:'ALL_ORDERS'|'COMMANDA_TYPE_ORDERS';
+	print_preferences:'ONLY_DISPLAY'|'PRINT_PARTIAL'|'FULL_PRINT'|'PRINT_ONLY_NEW_ITEMS';
 	store_id:number;
 }
 export interface Commanda_Type{
-	created:Date | null;
+	created:Date;
 	id:number;
 	name:string;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Currency{
 	id:string;
@@ -243,26 +247,26 @@ export interface Currency_Rate{
 }
 export interface File_Type{
 	content_type:string;
-	created:Date | null;
+	created:Date;
 	extension:string | null;
 	id:number;
 	image_id:number | null;
 	is_image:'NO'|'YES';
 	name:string;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Fund{
 	amount:number;
 	cashier_hour:string;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number;
 	currency_id:string;
 	id:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Image{
 	content_type:string;
-	created:Date | null;
+	created:Date;
 	filename:string;
 	height:number;
 	id:number;
@@ -279,7 +283,7 @@ export interface Item{
 	clave_sat:string | null;
 	code:string | null;
 	commanda_type_id:number | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	description:string | null;
 	extra_name:string | null;
@@ -294,7 +298,7 @@ export interface Item{
 	reference_price:number;
 	status:'ACTIVE'|'DELETED';
 	unidad_medida_sat_id:string | null;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Item_Attribute{
@@ -304,11 +308,11 @@ export interface Item_Attribute{
 	value:string;
 }
 export interface Item_Exception{
-	created:Date | null;
+	created:Date;
 	description:string;
 	id:number;
 	item_id:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Item_Option{
 	id:number;
@@ -332,26 +336,26 @@ export interface Item_Option_Value{
 	status:'ACTIVE'|'DELETED';
 }
 export interface Item_Recipe{
-	created:Date | null;
+	created:Date;
 	id:number;
 	item_id:number;
 	parent_item_id:number;
 	portion_qty:number;
 	print_on_recipe:'NO'|'YES';
-	updated:Date | null;
+	updated:Date;
 }
 export interface Keyboard_Shortcut{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	key_combination:string;
 	name:string;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Merma{
 	box_id:number | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number;
 	id:number;
 	item_id:number;
@@ -360,15 +364,15 @@ export interface Merma{
 	qty:number;
 	shipping_id:number | null;
 	store_id:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Notification_Token{
-	created:Date | null;
+	created:Date;
 	id:number;
 	provider:string;
 	status:'ACTIVE'|'DELETED';
 	token:string;
-	updated:Date | null;
+	updated:Date;
 	user_id:number;
 }
 export interface Order{
@@ -382,11 +386,12 @@ export interface Order{
 	city:string | null;
 	client_name:string | null;
 	client_user_id:number | null;
-	created:Date | null;
+	created:Date;
 	currency_id:string;
 	delivery_status:'PENDING'|'SENT'|'DELIVERED'|'CANCELLED'|'READY_TO_PICKUP';
 	delivery_user_id:number | null;
 	discount:number;
+	discount_calculated:number;
 	facturacion_code:string;
 	facturado:'NO'|'YES';
 	guests:number;
@@ -417,20 +422,21 @@ export interface Order{
 	store_id:number;
 	subtotal:number;
 	suburb:string | null;
-	sync_id:string | null;
+	sync_id:string;
 	system_activated:Date | null;
+	table_id:number | null;
 	tag:string | null;
 	tax:number;
 	tax_percent:number;
 	total:number;
-	updated?:Date;
+	updated:Date;
 	version_created:string;
 	version_updated:string;
 }
 export interface Order_Item{
 	commanda_id:number | null;
 	commanda_status:'NOT_DISPLAYED'|'PENDING'|'DISMISSED';
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	delivered_qty:number;
 	delivery_status:'PENDING'|'DELIVERED';
@@ -462,31 +468,31 @@ export interface Order_Item{
 	tax_included:'NO'|'YES';
 	total:number;
 	unitary_price:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Pallet{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	production_item_id:number | null;
 	store_id:number | null;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Pallet_Content{
 	box_id:number;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	pallet_id:number;
 	status:'ACTIVE'|'REMOVED';
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Payment{
 	change_amount:number;
 	concept:string | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	currency_id:string;
 	exchange_rate:number;
@@ -499,11 +505,11 @@ export interface Payment{
 	sync_id:string | null;
 	tag:string | null;
 	type:'income'|'expense';
-	updated:Date | null;
+	updated:Date;
 }
 export interface Paypal_Access_Token{
 	access_token:string;
-	created:Date | null;
+	created:Date;
 	expires:Date | null;
 	id:number;
 	raw_response:string | null;
@@ -511,7 +517,7 @@ export interface Paypal_Access_Token{
 export interface Paypal_Order{
 	buyer_user_id:number;
 	create_response:string;
-	created:Date | null;
+	created:Date;
 	id:string;
 	log:string | null;
 	order_id:number | null;
@@ -543,7 +549,7 @@ export interface Preferences{
 	card_border_radius:string;
 	chat_upload_attachment_image_id:number | null;
 	chat_upload_image_id:number | null;
-	created:Date | null;
+	created:Date;
 	currency_price_preference:'ONLY_DEFAULT_CURRENCY'|'MULTIPLE_CURRENCY';
 	default_cash_close_receipt:number;
 	default_file_logo_image_id:number | null;
@@ -584,10 +590,10 @@ export interface Preferences{
 	submenu_text_color:string;
 	text_color:string;
 	titles_color:string | null;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Price{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	currency_id:string;
 	id:number;
@@ -596,19 +602,19 @@ export interface Price{
 	price_list_id:number;
 	price_type_id:number;
 	tax_included:'NO'|'YES';
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Price_List{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	name:string;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Price_Log{
-	created?:Date;
+	created:Date;
 	created_by_user_id?:number | null;
 	id?:number | null;
 	item_id?:number | null;
@@ -618,35 +624,36 @@ export interface Price_Log{
 	price_list_id?:number | null;
 	price_type_id?:number | null;
 	tax_included?:'NO'|'YES';
-	updated?:Date;
+	updated:Date;
 }
 export interface Price_Type{
-	created:Date | null;
+	created:Date;
 	id:number;
 	name:string;
 	tax_model: 'TAX_INCLUDED' | 'PLUS_TAX' | 'ALL';
 	sort_priority:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Product{
 	id:number;
 	name:number;
 }
 export interface Purchase{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
+	order_id:number | null;
 	provider_name:string | null;
 	provider_user_id:number | null;
 	status:'ACTIVE'|'DELETED';
 	stock_status:'PENDING'|'ADDED_TO_STOCK'|'SHIPPING_CREATED';
 	store_id:number;
 	total:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Purchase_Detail{
-	created:Date | null;
+	created:Date;
 	description:string | null;
 	id:number;
 	item_id:number;
@@ -656,12 +663,12 @@ export interface Purchase_Detail{
 	stock_status:'PENDING'|'ADDED_TO_STOCK';
 	total:number;
 	unitary_price:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Push_Notification{
 	app_path:string | null;
 	body:string;
-	created:Date | null;
+	created:Date;
 	icon_image_id:number | null;
 	id:number;
 	link:string | null;
@@ -673,7 +680,7 @@ export interface Push_Notification{
 	response:string | null;
 	sent_status:number | null;
 	title:string;
-	updated:Date | null;
+	updated:Date;
 	user_id:number;
 }
 export interface Quote{
@@ -681,7 +688,7 @@ export interface Quote{
 	approved_time:string | null;
 	attachment_id:number | null;
 	client_user_id:number | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number;
 	email:string;
 	id:number;
@@ -690,11 +697,11 @@ export interface Quote{
 	store_id:number;
 	sync_id:string;
 	tax_percent:number;
-	updated:Date | null;
+	updated:Date;
 	valid_until:string | null;
 }
 export interface Quote_Item{
-	created:Date | null;
+	created:Date;
 	discount:number;
 	discount_percent:number;
 	id:number;
@@ -709,50 +716,50 @@ export interface Quote_Item{
 	tax_included:'YES'|'NO';
 	total:number;
 	unitary_price:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Requisition{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	date:string;
 	id:number;
 	requested_to_store_id:number | null;
 	required_by_store_id:number;
 	status:'PENDING'|'CANCELLED'|'NOT_APPROVED'|'SHIPPED';
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Requisition_Item{
 	aproved_status:'NOT_APPROVED'|'APPROVED';
-	created:Date | null;
+	created:Date;
 	id:number;
 	item_id:number;
 	qty:number;
 	requisition_id:number;
 	status:'ACTIVE'|'DELETED';
-	updated:Date | null;
+	updated:Date;
 }
 export interface Returned_Item{
-	created:Date | null;
+	created:Date;
 	id:number;
 	item_id:number;
 	returned_qty:number;
 	returns_id:number;
 	total:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Returns{
 	amount_paid:number;
 	cashier_user_id:number;
 	client_user_id:number | null;
 	code:string;
-	created:Date | null;
+	created:Date;
 	id:number;
 	note:string | null;
 	order_id:number;
 	store_id:number;
 	total:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Sat_Factura{
 	created:Date;
@@ -766,24 +773,24 @@ export interface Sat_Factura{
 	xml_attachment_id:number | null;
 }
 export interface Sat_Response{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	id_order:number;
 	request:string | null;
 	response:string | null;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Session{
-	created:Date | null;
+	created:Date;
 	id:string;
 	status:'ACTIVE'|'INACTIVE';
-	updated:Date | null;
+	updated:Date;
 	user_id:number | null;
 }
 export interface Shipping{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	date:string;
 	delivery_datetime:string | null;
@@ -797,12 +804,12 @@ export interface Shipping{
 	shipping_guide:string;
 	status:'PENDING'|'DELIVERED'|'SENT';
 	to_store_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Shipping_Item{
 	box_id:number | null;
-	created:Date | null;
+	created:Date;
 	id:number;
 	item_id:number | null;
 	pallet_id:number | null;
@@ -830,23 +837,23 @@ export interface Stock_Record{
 	serial_number_record_id:number | null;
 	shipping_item_id:number | null;
 	store_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number;
 }
 export interface Stocktake{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	name:string | null;
 	status:'ACTIVE'|'CLOSED';
 	store_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Stocktake_Item{
 	box_content_id:number | null;
 	box_id:number | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	creation_qty:number | null;
 	current_qty:number;
@@ -854,40 +861,40 @@ export interface Stocktake_Item{
 	item_id:number | null;
 	pallet_id:number | null;
 	stocktake_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Stocktake_Scan{
 	box_content_id:number | null;
 	box_id:number | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	item_id:number | null;
 	pallet_id:number | null;
 	qty:number;
 	stocktake_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Storage{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	section:string;
 	shelf:string;
 	sort_order:number;
 	store_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Storage_Item{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	id:number;
 	item_id:number;
 	storage_id:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 }
 export interface Store{
@@ -895,7 +902,7 @@ export interface Store{
 	business_name:string | null;
 	city:string | null;
 	client_user_id:number | null;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	default_billing_data_id:number | null;
 	default_currency_id:string;
@@ -907,6 +914,7 @@ export interface Store{
 	name:string;
 	paypal_email:string | null;
 	phone:string | null;
+	pos_category_preferences:'DEFAULT_BY_PRODUCT'|'HIDE_BY_DEFAULT'|'SHOW_BY_DEFAULT';
 	price_list_id:number | null;
 	printer_ticket_config:string | null;
 	rfc:string | null;
@@ -915,18 +923,18 @@ export interface Store{
 	tax_percent:number;
 	ticket_footer_text:string | null;
 	ticket_image_id:number | null;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 	zipcode:string | null;
 }
 export interface Store_Bank_Account{
 	bank_account_id:number;
-	created:Date | null;
+	created:Date;
 	id:number;
 	is_dirty:'NO'|'YES';
 	name:string;
 	store_id:number;
-	updated:Date | null;
+	updated:Date;
 }
 export interface Table{
 	attended_by_user_id?:number | null;
@@ -950,7 +958,7 @@ export interface Unidad_Medida_Sat{
 	nombre:string;
 }
 export interface User{
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	credit_days:number;
 	credit_limit:number;
@@ -968,7 +976,7 @@ export interface User{
 	price_type_id:number;
 	store_id:number | null;
 	type:'CLIENT'|'USER';
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 	username:string | null;
 }
@@ -986,8 +994,9 @@ export interface User_Permission{
 	approve_bill_payments:number;
 	asign_marbetes:number;
 	caldos:number;
+	cancel_closed_orders?:number | null;
 	change_client_prices:number;
-	created:Date | null;
+	created:Date;
 	created_by_user_id:number | null;
 	edit_billing_data:number;
 	fullfill_orders:number;
@@ -1014,9 +1023,8 @@ export interface User_Permission{
 	send_shipping:number;
 	stocktake:number;
 	store_prices:number;
-	updated:Date | null;
+	updated:Date;
 	updated_by_user_id:number | null;
 	user_id:number;
 	view_commandas:number;
 }
-

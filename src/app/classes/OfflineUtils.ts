@@ -5,6 +5,13 @@ import {ObjectStore} from "./Finger/ObjectStore";
 import {Options} from "./Finger/OptionsUtils";
 import {StoreDictionary} from "./Finger/SchemeBuilder";
 
+//export inteface 
+export interface ItemCategorySearch
+{
+	category: Category[],
+	item_info: ItemInfo[]
+};
+
 export class OfflineUtils
 {
 	static sync_data_db ={
@@ -349,7 +356,7 @@ export class OfflineUtils
 		});
 	}
 
-	static getCategoriesAndItems(db:DatabaseStore,category_id:number):Promise<Record<string,Category[]|ItemInfo[]>>
+	static getCategoriesAndItems(db:DatabaseStore,category_id:number):Promise<ItemCategorySearch>
 	{
 		if( category_id != 0 )
 		{
