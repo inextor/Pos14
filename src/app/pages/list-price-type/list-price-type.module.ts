@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ListPriceTypeRoutingModule } from './list-price-type-routing.module';
 import { ListPriceTypeComponent } from './list-price-type.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ListPriceTypeComponent } from './list-price-type.component';
   ],
   imports: [
     CommonModule,
-    ListPriceTypeRoutingModule
+    ListPriceTypeRoutingModule,
+	SharedModule
   ]
 })
 export class ListPriceTypeModule { }
