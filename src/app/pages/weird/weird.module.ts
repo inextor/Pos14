@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { WeirdRoutingModule } from './weird-routing.module';
 import { WeirdComponent } from './weird.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -10,8 +11,9 @@ import { WeirdComponent } from './weird.component';
     WeirdComponent
   ],
   imports: [
-    CommonModule,
-    WeirdRoutingModule
+	  SharedModule,
+	  CommonModule,
+	  WeirdRoutingModule
   ]
 })
 export class WeirdModule { }

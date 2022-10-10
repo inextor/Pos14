@@ -1,0 +1,21 @@
+.orders_container
+{
+	display: inline-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: flex-start;
+	align-items: flex-start;
+	width: 300px;
+	padding: 20px;
+}
+
+.order_item
+{
+	order: 0;
+	flex: 0 0 300px;
+	align-self: auto;
+	position: relative;
+	margin: 25px;
+	cursor: pointer;
+}

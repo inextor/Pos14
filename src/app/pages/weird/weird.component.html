@@ -1,1 +1,26 @@
-<p>weird works!</p>
+<div class="container-fluid">
+	<h1 class="my-3">Crear Mesas</h1>
+	<div class="w-25">
+		<div class="card p-3">
+			<form (submit)="createTables($event)">
+				<div class="form-group">
+					<label for="qty">Cantidad de mesas</label>
+					<input type="text" class="form-control" id="name" name="qty" [(ngModel)]="qty" required>
+				</div>
+
+				<div class="form-group">
+					<label>Sucursal</label>
+					<select class="form-control" id="store_id" [(ngModel)]="store_id" name="store_id" required>
+						<option value="">Seleccionar</option>
+						<option *ngFor="let store of store_list" [value]="store.id">{{store.name | titlecase}}</option>
+					</select>
+				</div>
+				<button type="submit" [disabled]="is_loading" class="btn btn-primary">Crear Mesas</button>
+			</form>
+		</div>
+	</div>
+	<h2>Actualizar</h2>
+	<div>
+		<button type="button" (click)="updateOffline()">Actualizar</button>
+	</div>
+</div>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
  { path: 'c-cart', loadChildren: () => import('./client/c-cart/c-cart.module').then(m => m.CCartModule) },
@@ -108,7 +108,7 @@ const routes: Routes = [
  { path: 'stock-report', loadChildren: () => import('./pages/stock-report/stock-report.module').then(m => m.StockReportModule) }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

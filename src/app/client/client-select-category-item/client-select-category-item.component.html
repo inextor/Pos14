@@ -1,1 +1,36 @@
-<p>client-select-category-item works!</p>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-10">
+			<h1 class="my-3">Seleccionar {{category.name | titlecase}}</h1>
+		</div>
+		<div class="col-2">
+			<a class="cart-link mt-1 text-end" routerLink="/c-cart">
+				<svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921z"/><circle cx="10.5" cy="19.5" r="1.5" fill="currentColor"/><circle cx="17.5" cy="19.5" r="1.5" fill="currentColor"/></svg>
+				<span class="number_indicator" *ngIf="cart_items">{{cart_items}}</span>
+			</a>
+		</div>
+	</div>
+	<div class=""></div>
+	<ul class="list-group">
+		<li class="list-group-item" *ngFor="let item_info of item_info_list">
+			<div class="row align-items-center align-middle">
+				<div class="col-8 p-0">
+					<div class="d-inline-block align-middle">
+						<div class="ratio ratio-1x1" [ngStyle]="{'background-image':'url('+rest.getImagePath(item_info.item.image_id,item_info.category?.image_id)+')','background-position': '50% 50%','background-size':'cover','width':'40px'}"></div>
+					</div>
+					{{item_info.item.name}}
+				</div>
+				<div class="col-4 p-0 text-center text-md-end">
+					<span class="badge bg-secondary">{{item_info?.price?.price | currency:'$'}}</span>
+					<div *ngIf="item_info.price">
+						<button *ngIf="item_info.options.length == 0" (click)="addItemToCart(item_info)" class="btn btn-primary">Agregar</button>
+						<a  *ngIf="item_info.options.length" [routerLink]="['/c-configure-item',item_info.item.id]" class="btn btn-primary">Agregar</a>
+					</div>
+					<div *ngIf="!item_info.price">
+						No Disponible
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

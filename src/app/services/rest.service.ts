@@ -679,7 +679,7 @@ export class RestService
 	}
 
 
-	getStockReport(store_id:number,page:number,limit:number,name:string, type:string):Observable<any>
+	getStockReport(store_id:number,page:number,limit:number,name:string, type:string):Observable<RestResponse<StockRecordInfo>>
 	{
 		let query:any ={ store_id, page, limit, name, type };
 

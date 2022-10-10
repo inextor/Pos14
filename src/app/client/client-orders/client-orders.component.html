@@ -1,1 +1,52 @@
-<p>client-orders works!</p>
+<div class="container-fluid pb-3">
+	<div class="row my-3">
+		<div class="col-8">
+			<h1 class="my">Ordenes</h1>
+		</div>
+		<div class="col-4 text-end">
+			<a routerLink="/c-select-category" *ngIf="this.store_selected_id" class="btn btn-secondary">Agregar</a>
+			<button type="button" *ngIf="!this.store_selected_id" class="btn btn-secondary" (click)="showStoreSelector()">Agregar</button>
+		</div>
+	</div>
+	<app-loading [is_loading]="is_loading"></app-loading>
+	<ul class="list-group" *ngIf="order_info_list.length">
+		<li *ngIf="order_info_list.length == 0" class="list-group-item">No se encontraron ordenes</li>
+		<li class="list-group-item" *ngFor="let order_info of order_info_list">
+			<div class="row align-items-center" [routerLink]="['/c-view-order',order_info.order.id]">
+				<div class="col-8 align-middle pointer">
+					<div class="d-inline-block fs-1 fw-bold align-middle me-3">
+						#{{order_info.order.id }}
+					</div>
+					<div class="d-inline-block align-middle">
+						<span>{{order_info.order.created | date: 'd MMMM y'}}</span>
+						<br>
+						{{order_info.order.created | date: 'h:mm a' }}
+					</div>
+				</div>
+				<div class="col-4 text-end align-middle">
+					<span class="badge bg-secondary">{{order_info.order.total | currency:'$'}}</span>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<app-modal [(show)]="show_select_store">
+	<div class="p-3">
+		<h1>Seleccionar Sucursal</h1>
+		<div class="row">
+			<div class="col-12 form-group mb-3">
+				<label>Sucursal</label>
+				<select [(ngModel)]="store_selected_id" class="form-control" name="store_id">
+					<option *ngFor="let store of store_list" [ngValue]="store.id">{{store.name | titlecase}}</option>
+				</select>
+			</div>
+			<div class="col-6">
+				<button type="button" class="btn btn-primary w-100">Cerrar</button>
+			</div>
+			<div class="col-6">
+				<button type="button" class="btn btn-primary w-100" (click)="onStoreSelected(this.store_selected_id)">Aceptar</button>
+			</div>
+		</div>
+	</div>
+</app-modal>

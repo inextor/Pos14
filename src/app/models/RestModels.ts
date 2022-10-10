@@ -447,7 +447,7 @@ export interface Order_Item{
 	is_free_of_charge:'NO'|'YES';
 	is_item_extra:'NO'|'YES';
 	item_extra_id:number | null;
-	item_group:number | null;
+	item_group:number;
 	item_id:number;
 	item_option_id:number | null;
 	item_option_qty:number;
@@ -802,7 +802,7 @@ export interface Shipping{
 	requisition_id:number | null;
 	shipping_company:string;
 	shipping_guide:string;
-	status:'PENDING'|'DELIVERED'|'SENT';
+	status:'PENDING'|'DELIVERED'|'SENT' | 'CANCELLED';
 	to_store_id:number;
 	updated:Date;
 	updated_by_user_id:number | null;

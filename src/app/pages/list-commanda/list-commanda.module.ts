@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ListCommandaRoutingModule } from './list-commanda-routing.module';
 import { ListCommandaComponent } from './list-commanda.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ListCommandaComponent } from './list-commanda.component';
   ],
   imports: [
     CommonModule,
-    ListCommandaRoutingModule
+    ListCommandaRoutingModule,
+	SharedModule
   ]
 })
 export class ListCommandaModule { }

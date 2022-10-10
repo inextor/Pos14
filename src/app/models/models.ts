@@ -98,8 +98,8 @@ export interface ShippingItemInfo
 
 export interface ShippingInfo
 {
-	shipping:Partial<Shipping>;
-	items:Partial<ShippingItemInfo>[];
+	shipping:Shipping;
+	items:ShippingItemInfo[];
 	purchase?:Purchase;
 }
 

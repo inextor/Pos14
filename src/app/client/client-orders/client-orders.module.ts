@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ClientOrdersRoutingModule } from './client-orders-routing.module';
 import { ClientOrdersComponent } from './client-orders.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { ClientOrdersComponent } from './client-orders.component';
   ],
   imports: [
     CommonModule,
-    ClientOrdersRoutingModule
+    ClientOrdersRoutingModule,
+	SharedModule,
+
   ]
 })
 export class ClientOrdersModule { }

@@ -1,1 +1,117 @@
-<p>list-stock works!</p>
+<div class="container-fluid">
+
+	<div class="row align-items-end my-3 mx-0 mb-3">
+		<div class="col">
+			<h1 class="text-capitalize">Inventario</h1>
+		</div>
+		<div class="col-auto">
+			<!--<button type="button" class="mr-2 btn btn-secondary lift" (click)="show_import=true">Importar</button-->
+			<button type="button" class="mr-2 btn btn-secondary lift" (click)="exportFile()">Exportar</button>
+			<!--button type="button" class="ml-2 btn btn-secondary lift" [routerLink]="['/add-item',this.type]">Agregar Producto</button-->
+		</div>
+	</div>
+
+	<!-- div>
+		<div class="row">
+
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id</label>
+					<input type="number" name="id" [(ngModel)]="item_search.eq.id" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Category</label>
+					<select name="category_id" [(ngModel)]="item_search.eq.category_id" class="form-control">
+						<option [ngValue]="null">Seleccionar</option>
+						<option *ngFor="let c of category_list" [value]="c.id">{{c.name}}</option>
+					</select>
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Name</label>
+					<input type="number" name="name" [(ngModel)]="item_search.eq.name" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Code</label>
+					<input type="text" name="code" [(ngModel)]="item_search.lk.code" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Created by user</label>
+					<input type="number" name="created_by_user" [(ngModel)]="item_search.eq.created_by_user" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Updated by user</label>
+					<input type="number" name="updated_by_user" [(ngModel)]="item_search.eq.updated_by_user" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Created</label>
+					<input type="datetime-local" name="created" [(ngModel)]="item_search.eq.created" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Updated</label>
+					<input type="datetime-local" name="updated" [(ngModel)]="item_search.eq.updated" class="form-control">
+				</div>
+
+			<div class="col-6 col-md-3">
+				<button type="button" class="w-100 btn btn-primary" (click)="search()">Buscar</button>
+			</div>
+		</div>
+	</div -->
+
+	<div class="card p-3">
+		<div class="row">
+			<div class="col-12 col-lg-4 form-group">
+				<label>Sucursal</label>
+				<select name="store_id" [(ngModel)]="stock_search.eq.store_id" class="form-control">
+					<option [ngValue]="null">Seleccionar</option>
+					<option *ngFor="let c of store_list" [value]="c.id">{{c.name}}</option>
+				</select>
+			</div>
+			<div class="col-12 col-lg-4 form-group">
+				<label>Nombre</label>
+				<input type="text" [(ngModel)]="stock_search.search_extra['name']" class="form-control">
+			</div>
+
+			<div class="col-12 col-lg-4 form-group">
+				<label></label>
+				<div>
+					<button type="button" (click)="search(stock_search)" class="btn btn-primary">
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.3em" height="1.3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path _ngcontent-oxd-c76="" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128c0-70.7 57.2-128 128-128c70.7 0 128 57.2 128 128c0 70.7-57.2 128-128 128z" fill="currentColor"></path></svg>
+						Buscar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div  class="card p-3 mt-3">
+		<!-- div class="row">
+				TEMPLATE_LIST_TABLE_HEADERS
+		</div -->
+		<app-loading [is_loading]="is_loading"></app-loading>
+		<div class="table-responsive">
+			<table class="table table-sm table-nowrap mb-0">
+				<thead class="thead-light">
+					<tr>
+						<th>Nombre</th>
+						<th class="px-3 text-end">Cantidad</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let sri of stock_record_info_list">
+						<td class="px-3">
+							<img [src]="rest.getImagePath(sri.item.image_id, sri.category?.image_id,rest.local_preferences.default_product_image_id)" style="max-width:40px;max-height:30px;" class="me-3">
+							<span *ngIf="sri.category">
+								{{sri.category.name | titlecase }} -
+							</span>
+							<span class="fw-bold">{{sri.item.name | titlecase }}</span>
+							<span style="color:#888888">&nbsp;&nbsp;{{sri.item.code}}</span>
+						</td>
+						<td class="px-3 text-end" style="line-height:30px">
+							{{sri.stock_record.qty | number}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<app-pagination [path]="'/list-stock'" [pages]="pages" [total_pages]="total_pages" [current_page]="current_page"></app-pagination>
+</div>

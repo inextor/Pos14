@@ -1,1 +1,86 @@
-<p>list-billing-data works!</p>
+<div class="container-fluid">
+
+	<div class="row align-items-end mx-0 my-3">
+		<div class="col">
+			<h1 class="text-capitalize">Datos De facturación</h1>
+		</div>
+		<div class="col-auto">
+			<button type="button" class="ml-2 btn btn-secondary lift" [routerLink]="['/add-billing-data']">Agregar</button>
+		</div>
+	</div>
+
+	<!-- div>
+		<div class="row">
+
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id</label>
+					<input type="number" name="id" [(ngModel)]="billing_data_search.eq.id" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Rfc</label>
+					<input type="number" name="rfc" [(ngModel)]="billing_data_search.eq.rfc" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Usuario</label>
+					<input type="number" name="usuario" [(ngModel)]="billing_data_search.eq.usuario" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Password</label>
+					<input type="number" name="password" [(ngModel)]="billing_data_search.eq.password" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Created by user</label>
+					<input type="number" name="created_by_user_id" [(ngModel)]="billing_data_search.eq.created_by_user_id" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Updated by user</label>
+					<input type="number" name="updated_by_user_id" [(ngModel)]="billing_data_search.eq.updated_by_user_id" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Created</label>
+					<input type="datetime-local" name="created" [(ngModel)]="billing_data_search.eq.created" class="form-control">
+				</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Updated</label>
+					<input type="datetime-local" name="updated" [(ngModel)]="billing_data_search.eq.updated" class="form-control">
+				</div>
+
+			<div class="col-6 col-md-3">
+				<button type="button" class="w-100 btn btn-primary" (click)="search()">Buscar</button>
+			</div>
+		</div>
+	</div -->
+
+	<div  class="card p-3 mt-3">
+		<!-- div class="row">
+				TEMPLATE_LIST_TABLE_HEADERS
+		</div -->
+		<app-loading [is_loading]="is_loading"></app-loading>
+		<div class="table-responsive">
+			<table class="table table-sm table-nowrap mb-0">
+				<thead class="thead-light">
+					<tr>
+						<th>Usuario</th>
+						<th class="d-none d-md-table-cell">RFC</th>
+						<th class="d-none d-md-table-cell">Actualización</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let billing_data of billing_data_list">
+						<td>
+							<a [routerLink]="['/edit-billing-data',billing_data.id]">
+								{{billing_data.id}} - {{billing_data.usuario}}
+							</a>
+						</td>
+						<td class="d-none d-md-table-cell">{{billing_data.rfc}}</td>
+						<td class="d-none d-md-table-cell">{{billing_data.updated | date: 'MMM d, y,  h:mm a' }}</td>
+					</tr>
+					<tr *ngIf="billing_data_list == null || billing_data_list.length == 0 && !is_loading" colspan="TEMPLATE_HEADERS_SIZE">
+						<div class="alert alert-light m-3" role="alert">No se encontraron elementos</div>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<app-pagination [path]="'/list-billing-data'" [pages]="pages" [total_pages]="total_pages" [current_page]="current_page"></app-pagination>
+</div>

@@ -1,1 +1,75 @@
-<p>list-category works!</p>
+<div class="container-fluid">
+	<div class="row align-items-end mx-0 my-3">
+		<div class="col">
+			<h1 class="text-capitalize">Categorías</h1>
+		</div>
+		<div class="col-auto">
+			<a class="ml-2 btn btn-secondary lift" [routerLink]="['/add-category',this.type]" *ngIf="rest.current_permission.add_items">
+				Agregar
+			</a>
+		</div>
+	</div>
+
+	<div class="card my-3 px-1 px-md-3 py-3">
+		<div class="row">
+			<div class="12 form-group">
+				<label class="">Nombre</label>
+				<input type="text" name="name" [(ngModel)]="category_search.lk.name" placeholder="categoria..." class="form-control" autocomplete="off" (input)="onSearch($event)">
+			</div>
+		</div>
+	</div>
+
+	<div class="card p-3">
+		<app-loading [is_loading]="is_loading"></app-loading>
+		<div class="table-responsive">
+			<table class="table table-sm table-nowrap mb-0">
+				<thead class="thead-light">
+					<tr>
+						<th class="">Nombre</th>
+						<th class="d-none d-lg-table-cell">Código</th>
+						<!-- th class="d-none d-lg-block">Presentacion</th-->
+						<th class="d-none d-lg-table-cell text-end">Actualizado</th>
+						<th class="d-none">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let category of category_list" class="align-middle">
+						<td>
+							<a [routerLink]="['/edit-category',category.id]">
+								<div *ngIf="category.image_id" class="d-inline-block ratio ratio-1x1" [style]="{'background-image':'url('+rest.getImagePath(category.image_id)+')','background-size':'contain',width:'40px','vertical-align':'middle','background-repeat':'no-repeat','background-position':'center center'}">
+									<img src="/assets/2px_transparent.png" width=40 height="40">
+								</div>
+								<span *ngIf="!category.image_id" class="default_image">
+									<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="40px" height="40px" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M10 3H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zm10 10h-6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1zM17 3c-2.206 0-4 1.794-4 4s1.794 4 4 4s4-1.794 4-4s-1.794-4-4-4zM7 13c-2.206 0-4 1.794-4 4s1.794 4 4 4s4-1.794 4-4s-1.794-4-4-4z" fill="currentColor"/></svg>
+								</span>
+								{{category.name}}
+							</a>
+						</td>
+						<td class="d-none d-lg-table-cell">{{category.code}}</td>
+						<!-- td class="d-none d-lg-block">{{category.presentacion}}</td -->
+						<td class="d-none d-lg-table-cell text-end">{{category.updated | date: 'MMM d, y, h:mm a' }}</td>
+						<td class="text-end">
+							<button type="button" class="btn btn-primary me-1" *ngIf="rest.current_permission.add_items" (click)="deleteCategory(category)">
+								<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="0.88em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 448 512"><path fill="currentColor" d="M135.2 17.69C140.6 6.848 151.7 0 163.8 0h120.4c12.1 0 23.2 6.848 28.6 17.69L320 32h96c17.7 0 32 14.33 32 32s-14.3 32-32 32H32C14.33 96 0 81.67 0 64s14.33-32 32-32h96l7.2-14.31zM31.1 128H416v320c0 35.3-28.7 64-64 64H95.1c-34.45 0-64-28.7-64-64V128zm80 80v224c0 8.8 8.1 16 16 16c9.7 0 16-7.2 16-16V208c0-8.8-6.3-16-16-16c-7.9 0-16 7.2-16 16zm96 0v224c0 8.8 8.1 16 16 16c9.7 0 16.9-7.2 16.9-16V208c0-8.8-7.2-16-16.9-16c-7.9 0-16 7.2-16 16zm96.9 0v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16s-16 7.2-16 16z"/></svg>
+							</button>
+
+							<a [routerLink]="['/list-category']" [queryParams]="{'search_extra.parent_category_id':category.id}" class="btn btn-primary mx-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"><g transform="rotate(90 24 24)"><mask id="svgIDa"><g fill="none" stroke="#fff" stroke-width="4"><circle cx="10" cy="24" r="4" fill="#fff"/><circle cx="38" cy="10" r="4" fill="#fff"/><circle cx="38" cy="24" r="4" fill="#fff"/><circle cx="38" cy="38" r="4" fill="#fff"/><path stroke-linecap="round" stroke-linejoin="round" d="M34 38H22V10h12M14 24h20"/></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#svgIDa)"/></g></svg>
+								<span class="d-none d-md-inline">Subs</span>
+							</a>
+
+							<a [routerLink]="['/list-item']" [queryParams]="{'eq.category_id':category.id}" class="btn btn-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1.3em" height="1.3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none"><path d="M13.409 2.512a3.75 3.75 0 0 0-2.818 0l-2.19.888l9.592 3.73l3.374-1.303a1.747 1.747 0 0 0-.46-.275l-7.498-3.04zM22 7.19l-9.25 3.574v10.923c.224-.045.444-.112.659-.199l7.498-3.04A1.75 1.75 0 0 0 22 16.826V7.19zM11.25 21.687V10.764L2 7.19v9.636a1.75 1.75 0 0 0 1.093 1.622l7.498 3.04c.215.087.435.154.659.2zM2.633 5.827L12 9.446l3.917-1.514l-9.543-3.71l-3.281 1.33c-.17.069-.324.162-.46.275z" fill="currentColor"/></g></svg>
+								<span class="d-none d-md-inline">Articulos</span>
+							</a>
+						</td>
+					</tr>
+					<tr *ngIf="category_list == null || category_list.length == 0 && !is_loading" colspan="6">
+						<div class="alert alert-light m-3" role="alert">No se encontraron elementos</div>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<app-pagination [path]="'/list-category/'+this.type" [pages]="pages" [total_pages]="total_pages" [current_page]="current_page"></app-pagination>
+</div>

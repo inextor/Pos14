@@ -33,6 +33,7 @@ import { CommonModule } from '@angular/common';
 //import { SelectItemOptionComponent } from './components/select-item-option/select-item-option.component';
 //import { ToastErrorComponent } from './components/toast-error/toast-error.component';
 import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [
@@ -64,6 +65,7 @@ import { SharedModule } from './shared/shared.module';
 		//ToastErrorComponent,
 	],
 	imports: [
+		AppRoutingModule,
 		BrowserModule,
 		CommonModule,
 		SharedModule.forRoot(),

@@ -1,0 +1,25 @@
+.number_indicator
+{
+	position: absolute;
+	color: white;
+	right: 0.1em;
+	background-color: red;
+	border-radius: 1em;
+	width: 2em;
+	height: 2em;
+	text-align: center; 
+}
+
+.cart-link
+{
+	display: inline-block;
+	position: relative;
+	float: right;
+}
+
+.row-cart
+{
+	height: 5em;
+	overflow: hidden;
+	padding-top: 1em;
+}

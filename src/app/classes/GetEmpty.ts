@@ -1,9 +1,35 @@
 import { ItemInfo, ItemOptionInfo, OrderInfo, OrderItemInfo, QuoteInfo } from "../models/models";
-import { Category, Item, Item_Exception, Order, Order_Item, Price, Price_Type, Quote, Stock_Record, Store } from "../models/RestModels";
+import { Category, Item, Item_Exception, Order, Order_Item, Price, Price_Type, Quote, Stock_Record, Store, User } from "../models/RestModels";
 import { RestService } from "../services/rest.service";
 
 export class GetEmpty
 {
+    static user(): User {
+		let d = new Date();
+		return {
+			created: d,
+			created_by_user_id: null,
+			credit_days: 0,
+			credit_limit: 0,
+			default_billing_address_id: null,
+			default_shipping_address_id: null,
+			email:'',
+			id:0,
+			image_id: null,
+			lat:0.0,
+			lng:0.0,
+			name:'',
+			password:'',
+			phone:'',
+			platform_client_id:0,
+			price_type_id:1,
+			store_id:null,
+			type:'USER',
+			updated:d,
+			updated_by_user_id: null,
+			username:''
+		}
+    }
     static order_item():Order_Item 
 	{
 		let d = new Date();
@@ -151,8 +177,8 @@ export class GetEmpty
 			store_consecutive: 0,
 			state: '',
 			system_activated: null,
-			version_updated: rest.getVersion(),
-			version_created: rest.getVersion(),
+			version_updated: version_created,
+			version_created: version_created,
 			id: 0,
 			facturacion_code: '',
 			billing_address_id: null,

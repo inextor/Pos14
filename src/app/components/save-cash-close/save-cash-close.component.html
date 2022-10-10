@@ -20,11 +20,11 @@
 		<div class="col-5">Fin</div>
 	</div>
 	<ng-container  *ngFor="let cash_close of cash_close_list">
-		<div class="row pointer py-1" [routerLink]="['/print-corte',rest.local_preferences.default_cash_close_receipt,cash_close.id]">
+		<a class="row pointer py-1" [routerLink]="['/print-corte',rest.local_preferences.default_cash_close_receipt,cash_close.id]">
 			<div class="col-2">{{cash_close.id }}</div>
 			<div class="col-5">{{cash_close.start | date: 'MMM d, y, h:mm a'}}</div>
 			<div class="col-5">{{cash_close.end | date: 'MMM d, y, h:mm a'}}</div>
-		</div>
+		</a>
 	</ng-container>
 	<div class="row p-3 mt-3 text-end border-top">
 		<div class="col-6">

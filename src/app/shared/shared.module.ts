@@ -31,38 +31,13 @@ import { SelectDeliveryUserComponent } from '../components/select-delivery-user/
 import { SelectItemOptionComponent } from '../components/select-item-option/select-item-option.component';
 import { ToastErrorComponent } from '../components/toast-error/toast-error.component';
 import { ScrollingModule} from '@angular/cdk/scrolling';
-import { AppRoutingModule } from '../app-routing.module';
-		//AddNewAddressComponent,
-		//AddNewClientComponent,
-		//AddNewItemEasyComponent,
-		//AddPosBillComponent,
-		//AttachmentUploaderComponent,
-		//FullTextComponent,
-		//HeaderComponent,
-		//ItemSelectorComponent,
-		//ListCashCloseComponent,
-		//LoadingComponent,
-		//MakeOrderReturnComponent,
-		//MakePaymentComponent,
-		//MenuComponent,
-		//ModalComponent,
-		//PaginationComponent,
-		//PayOrderComponent,
-		//QrCodeScannerComponent,
-		//SaveBankMovementEmbededComponent,
-		//SaveCashCloseComponent,
-		//SaveFundComponent,
-		//SearchCategoryComponent,
-		//SearchItemsComponent,
-		//SelectDeliveryUserComponent,
-		//SelectItemOptionComponent,
-		//ToastErrorComponent,
+import { RouterModule } from '@angular/router';
+//import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
 	declarations: [
 		BaseComponent,
-		ImageUploaderComponent,
 		AddNewAddressComponent,
 		AddNewClientComponent,
 		AddNewItemEasyComponent,
@@ -97,10 +72,11 @@ import { AppRoutingModule } from '../app-routing.module';
 		FormsModule, 
 		CommonModule, 
 		ScrollingModule,
-		AppRoutingModule,
+		RouterModule
 	],
 	exports:[ 
 		FormsModule, 
+		BaseComponent,
 		AddNewAddressComponent,
 		AddNewClientComponent,
 		AddNewItemEasyComponent,
@@ -126,11 +102,13 @@ import { AppRoutingModule } from '../app-routing.module';
 		SelectDeliveryUserComponent,
 		SelectItemOptionComponent,
 		ToastErrorComponent,
-		AppRoutingModule,
-	],
+		RouterModule,
+		FormsModule, 
+	//	BrowserModule
+		//CommonModule, 
+	]
 })
 export class SharedModule {
-
 	static forRoot():ModuleWithProviders<SharedModule>
 	{
 		return {

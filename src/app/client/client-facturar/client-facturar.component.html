@@ -1,1 +1,33 @@
-<p>client-facturar works!</p>
+<div class="container-fluid login_background">
+	<div class="container-fluid" style="max-width:400px;">
+		<h1 class="my-3">Facturar</h1>
+		<form (ngSubmit)="save($event)" ngNativeValidate>
+			<div class="card p-1 p-md-3">
+				<div class="mb-3 text-center py-3">
+					<img [src]="rest.getImagePath(rest.local_preferences.logo_image_id)" style="max-width:100%">
+				</div>
+				<div class="row">
+					<div class="col-12 form-group">
+						<label>Código</label>
+						<input class="form-control" type="text" name="facturacion_code" [(ngModel)]="facturacion_request.facturacion_code" autocomplete="off">
+					</div>
+					<div class="col-12 form-group">
+						<label>Razón Social</label>
+						<input class="form-control" type="text" name="razon_social" [(ngModel)]="facturacion_request.razon_social" autocomplete="organization">
+					</div>
+					<div class="col-12 form-group">
+						<label>RFC con homoclave</label>
+						<input class="form-control" type="text" minlength="12" maxlength="13" name="rfc" [(ngModel)]="facturacion_request.rfc" autocomplete="on">
+					</div>
+					<div class="col-12 form-group">
+						<label>Email</label>
+						<input class="form-control" type="email" name="email" [(ngModel)]="facturacion_request.email" autocomplete="email">
+					</div>
+					<div class="col-12 py-3 text-end">
+						<button type="submit" class="btn btn-primary w-100">Facturar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
