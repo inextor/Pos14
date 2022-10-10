@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ListPriceLogRoutingModule } from './list-price-log-routing.module';
 import { ListPriceLogComponent } from './list-price-log.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ListPriceLogComponent } from './list-price-log.component';
   ],
   imports: [
     CommonModule,
-    ListPriceLogRoutingModule
+    ListPriceLogRoutingModule,
+	SharedModule
   ]
 })
 export class ListPriceLogModule { }

@@ -1,1 +1,96 @@
-<p>list-price-log works!</p>
+<div class="container-fluid">
+
+	<div class="row align-items-end mx-0">
+		<div class="col">
+			<h1 class="my-3 text-capitalize">price log</h1>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="row">
+			<div class="col-6 col-md-3 form-group">
+				<label class="">Tipo de consumo</label>
+				<input type="number" name="price_type_id" [(ngModel)]="price_log_search.eq.price_type_id" class="form-control">
+			</div>
+			<div class="col-6 col-md-3 form-group">
+				<label class="">Lista de Precio</label>
+				<select type="number" name="price_list_id" [(ngModel)]="price_log_search.eq.price_list_id" class="form-control">
+					<option [ngValue]="null">Todos</option>
+					<option *ngFor="let price_list of price_list_list" [ngValue]="price_list.id">
+						{{price_list.name | titlecase}}
+					</option>
+				</select>
+			</div>
+			<div class="col-6 col-md-3 form-group">
+				<label class="">Usuario</label>
+				<select name="usuario" [(ngModel)]="price_log_search.eq.created_by_user_id" class="form-control">
+					<option [ngValue]="null">Todos</option>
+					<option *ngFor="let user of user_list" [ngValue]="user.id">
+						{{user.name | titlecase}}
+						<ng-container *ngIf="(user.username||'').toLowerCase().localeCompare( user.name.toLowerCase() ) != 0">({{user.username}})</ng-container>
+					</option>
+				</select>
+			</div>
+			<div class="col-6 col-md-3">
+				<button type="button" class="w-100 btn btn-primary" (click)="search(this.price_log_search)">Buscar</button>
+			</div>
+		</div>
+	</div>
+
+	<div  class="card p-3 mt-3">
+		<!-- div class="row">
+				TEMPLATE_LIST_TABLE_HEADERS
+		</div -->
+		<app-loading [is_loading]="is_loading"></app-loading>
+		<div class="table-responsive">
+			<table class="table table-sm table-nowrap mb-0">
+				<thead class="thead-light">
+					<tr>
+						<th>Id</th>
+						<th>Articulo</th>
+						<th>Tipo de consumo</th>
+						<th>Lista de precio</th>
+						<th>Precio anterior</th>
+						<th>Nuevo Precio</th>
+						<th>Usuario</th>
+						<th>Fecha</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let pli of price_log_list">
+						<td>{{pli.price_log.id}}</td>
+						<td>
+							<a [routerLink]="['/list-item']" [queryParams]="{'csv.id':pli.item.id}">
+							<ng-container *ngIf="pli.category">{{pli.category.name}}</ng-container> {{pli.item.name}}
+							</a>
+						</td>
+						<td>{{pli.price_type.name}}</td>
+						<td>{{pli.price_list.name}}</td>
+						<td>{{pli.price_log.old_price | currency:'$'}} {{pli.price_log.old_tax_included == 'NO'? 'Mas IVA':'IVA incluido'}}</td>
+						<td>{{pli.price_log.new_price | currency:'$'}} {{pli.price_log.tax_included == 'NO'? 'Mas IVA':'IVA incluido'}}</td>
+						<td>{{pli.user.name | titlecase }}</td>
+						<td>{{pli.price_log.created | date: 'MMM d, y, h:mm a' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<app-pagination [path]="'/list-price-log'" [pages]="pages" [total_pages]="total_pages" [current_page]="current_page"></app-pagination>
+</div>
+<!--app-modal [(show)]="show_import">
+	<div class="card p-3">
+		<h2>Import excel</h2>
+		<div class="from-group mb-3">
+			<label>Excel data</label>
+			<input name="file" type="file" (change)="onFileChanged($event)" accept="*/*" class="form-control">
+		</div>
+		<div class="row mt-3">
+			<div class="col-6">
+				<button type="button" class="btn btn-secondary w-100" (click)="show_import=false">Cancel</button>
+			</div>
+			<div class="col-6">
+				<button type="button" class="btn btn-primary w-100" (click)="uploadFile()" [disabled]="file==null">Upload</button>
+			</div>
+		</div>
+	</div>
+</app-modal-->
