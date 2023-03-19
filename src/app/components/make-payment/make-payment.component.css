@@ -1,0 +1,15 @@
+.bg-success
+{
+	background-color: #198754!important;
+}
+
+.card_ending::-webkit-outer-spin-button,
+.card_ending::-webkit-inner-spin-button
+{
+	-webkit-appearance: none;
+	margin: 0;
+}
+.card_ending
+{
+	-moz-appearance: textfield;
+}

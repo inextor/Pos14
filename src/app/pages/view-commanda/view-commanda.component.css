@@ -1,0 +1,20 @@
+.commanda_item
+{
+	margin: 10px;
+	box-sizing: border-box;
+	flex: 0 0 300px;
+	border-width: var(--card-border-width);
+	border-color: var(--card-border-color);
+	border-style: var(--card-border-style);
+	border-radius: var(--radius-style);
+}
+
+.commanda_item.opacity
+{
+	opacity: 0.3;
+}
+
+.order-item.DISMISSED
+{
+	text-decoration: line-through black;
+}

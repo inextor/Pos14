@@ -11,7 +11,8 @@
 	background-image: var(--card-background-image);
 	min-width: 300px;
 	min-height: 50px;
-	overflow: hidden;
+	overflow-x: auto;
+	overflow-y: auto;
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -40,7 +41,6 @@
 .rounded
 {
 	max-height: 95vh;
-	overflow-y: scroll;
 }
 
 .app-modal dialog

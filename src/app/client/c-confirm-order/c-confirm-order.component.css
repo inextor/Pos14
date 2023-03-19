@@ -1,0 +1,36 @@
+.flex-container
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+}
+
+.flex-item:nth-child(1)
+{
+    order: 0;
+    flex: 0 1 auto;
+    align-self: stretch;
+}
+
+.flex-item:nth-child(2)
+{
+    order: 0;
+    flex: 1 1 auto;
+    align-self: stretch;
+	position: relative;
+}
+.flex-item:nth-child(2)>.main_confirmation
+{
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+}
+
+.flex-item:nth-child(3) {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: stretch;
+}

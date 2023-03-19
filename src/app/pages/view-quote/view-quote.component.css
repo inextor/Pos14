@@ -1,0 +1,92 @@
+@media print
+{
+	.card
+	{
+		border: 0;
+		background-color: none;
+		color: black;
+		padding: 0;
+		box-shadow: none;
+	}
+
+	.buyer_info.col-12,
+	.quote_info.col-12
+	{
+		width: 50%;
+	}
+
+	.d-md-none
+	{
+		display:none !important;
+	}
+
+	.quote_items .col-md-6
+	{
+		width: 50%;
+	}
+	.quote_items .col-md-2
+	{
+		width: 16.66666667%
+	}
+
+	.border
+	{
+		border: 0!important;
+	}
+
+	.quote_items .col-md-10
+	{
+		width: 83.33333333%;
+	}
+}
+
+.image_logo_ticket
+{
+	width: 25%;
+}
+
+
+.break_pages
+{
+	filter: grayscale(100%);
+	break-after: page;
+}
+
+@media screen{
+	
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+#markdown a:visited,
+#markdown a:link,
+#markdown a:hover,
+#markdown a:focus
+{
+	color: #000 !important;
+	text-decoration: none !important;
+}
+
+.truncate
+{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+td
+{
+	width:33%;
+}
+
+.btn.btn-primary
+{
+	background-color: #767579 !important;
+	border: 1px solid #767579 !important;
+	color: white ;
+	box-shadow: none !important;
+}

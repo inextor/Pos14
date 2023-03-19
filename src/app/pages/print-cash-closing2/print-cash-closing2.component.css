@@ -1,0 +1,30 @@
+.corte_de_caja
+{
+	background-color: white;
+}
+
+.corte_de_caja h4
+{
+	color: black;
+}
+
+
+@media print
+{
+	.image_logo
+	{
+	 	width:100%;
+		max-width:700px;
+		padding-bottom:50px
+	}
+}
+
+@media screen
+{
+	.image_logo
+	{
+	 	width:30%;
+		max-width:300px;
+		padding-bottom:20px
+	}
+}

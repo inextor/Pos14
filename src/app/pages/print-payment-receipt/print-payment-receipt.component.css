@@ -1,0 +1,36 @@
+.break_pages
+{
+	filter: grayscale(100%);
+	break-after: all;
+}
+
+@media screen{ 
+	.image_logo_ticket
+	{
+		width: 25%;
+		padding-bottom: 15px;
+	}
+}
+
+@media print { 
+	.image_logo_ticket
+	{
+		width: 80%;	
+		padding-bottom: 50px;
+	}
+}
+
+
+.larger
+{
+	font-size: larger;
+}
+
+ 
+.btn.btn-primary
+{
+	background-color: #767579;
+	border: 1px solid #767579;
+	color: white ;
+	box-shadow: none !important;
+}
